@@ -73,7 +73,7 @@ console.log(removDublicate(arr));
 */
 
 //---------------------- Sorting Array -------------------
-
+/*
 const arr = [3, 2, 1, 4];
 const res = arr.slice().sort((a, b) => a - b);
 console.log(res, arr);
@@ -91,3 +91,101 @@ books.sort((book1, book2) => {
 });
 
 console.log(books);
+*/
+
+//-------- Array range -----------
+// Q1: Write a function which implements a range
+// console.log(range(1, 50)) // [1,2,3,4,5...,50]
+/*
+const range = (start, end) => {
+  return [
+    ...Array(end)
+      .keys()
+      .map((el) => el + start),
+  ];
+};
+
+console.log(range(1, 50));
+*/
+
+//---------shuffle Array----------
+// const arr = [1, 2, 3, 4, 5];
+
+// const shuffle = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     let j = Math.floor(Math.random() * (i + 1));
+//     [arr[j], arr[i]] = [arr[i], arr[j]];
+//   }
+//   return arr;
+// };
+// console.log(arr, "before shuffle");
+// console.log(shuffle(arr));
+
+// Max occurance of min number in array.
+/*
+const test = [1, 2, 3, 4, 5, 1];
+const min = Math.min(...test);
+const minArr = test.filter((el) => el === min);
+console.log(minArr.length);
+*/
+
+//----------Call, Apply, Bind----------
+
+const obj = {
+  name: "shubham",
+};
+
+function sayhello(age) {
+  return this.name + " hello you age is " + age;
+}
+let result = sayhello.call(obj, 27);
+// console.log(result);
+
+//Now create Polyfill for call()
+
+Function.prototype.myCall = function (context = {}, ...arg) {
+  if (typeof this != "function") {
+    throw new Error(" this type is not valid ! ");
+  }
+  context.fn = this;
+  const result = context.fn(...arg);
+  delete context;
+  return result;
+};
+
+result = sayhello.myCall(obj, 36);
+console.log(result);
+
+//---------------     apply()
+
+Function.prototype.myApply = function (context = {}, args = []) {
+  if (typeof this != "function") {
+    throw new Error("not a valid function type");
+  }
+  if (!Array.isArray(args)) {
+    throw new Error("Please provide arument in array");
+  }
+  context.fn = this;
+  const result = context.fn(...args);
+  delete context;
+  return result;
+};
+
+const result2 = sayhello.myApply(obj, [27]);
+console.log(result2, "result2");
+
+//---------------- Bind()
+Function.prototype.myApply = function (context = {}, ...args) {
+  if (typeof this != "function") {
+    throw new Error("not bound to function");
+  }
+  context.fun = this;
+  return function (...newArgs) {
+    const result = context.fun(...args, ...newArgs);
+    delete context;
+    return result;
+  };
+};
+
+const result3 = sayhello.bind(obj,27);
+console.log(result3());
