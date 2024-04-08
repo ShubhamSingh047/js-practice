@@ -131,61 +131,92 @@ console.log(minArr.length);
 
 //----------Call, Apply, Bind----------
 
-const obj = {
-  name: "shubham",
-};
+// const obj = {
+//   name: "shubham",
+// };
 
-function sayhello(age) {
-  return this.name + " hello you age is " + age;
-}
-let result = sayhello.call(obj, 27);
+// function sayhello(age) {
+//   return this.name + " hello you age is " + age;
+// }
+// let result = sayhello.call(obj, 27);
 // console.log(result);
 
 //Now create Polyfill for call()
 
-Function.prototype.myCall = function (context = {}, ...arg) {
-  if (typeof this != "function") {
-    throw new Error(" this type is not valid ! ");
-  }
-  context.fn = this;
-  const result = context.fn(...arg);
-  delete context;
-  return result;
-};
+// Function.prototype.myCall = function (context = {}, ...arg) {
+//   if (typeof this != "function") {
+//     throw new Error(" this type is not valid ! ");
+//   }
+//   context.fn = this;
+//   const result = context.fn(...arg);
+//   delete context;
+//   return result;
+// };
 
-result = sayhello.myCall(obj, 36);
+// result = sayhello.myCall(obj, 36);
+// console.log(result);
+
+// //---------------     apply()
+
+// Function.prototype.myApply = function (context = {}, args = []) {
+//   if (typeof this != "function") {
+//     throw new Error("not a valid function type");
+//   }
+//   if (!Array.isArray(args)) {
+//     throw new Error("Please provide arument in array");
+//   }
+//   context.fn = this;
+//   const result = context.fn(...args);
+//   delete context;
+//   return result;
+// };
+
+// const result2 = sayhello.myApply(obj, [27]);
+// console.log(result2, "result2");
+
+// //---------------- Bind()
+// Function.prototype.myApply = function (context = {}, ...args) {
+//   if (typeof this != "function") {
+//     throw new Error("not bound to function");
+//   }
+//   context.fun = this;
+//   return function (...newArgs) {
+//     const result = context.fun(...args, ...newArgs);
+//     delete context;
+//     return result;
+//   };
+// };
+
+// const result3 = sayhello.bind(obj,27);
+// console.log(result3());
+
+//-----------------Object Deep Copy----------
+
+// const obj = {
+//   name: "shubahm",
+//   age: 27,
+// };
+
+// const string = JSON.stringify(obj);
+// const result = JSON.parse(string);
+// obj.fu = 12;
+// console.log(obj);
+// console.log(result);
+
+// ------------ Variable and hosting -------
+
+// console.log(b, "b");
+// console.log(a, "a");
+// const a = 1;
+// var b = 2;
+
+// --- filter/map/reduce --
+
+const arr = [1, 2, 3, 4, 5];
+
+// if no value id provided then it take it inital value by defult as first element of arr; 
+const result = arr.reduce((acc, curr, i, arr) => {
+  return acc + curr;
+},10);
+
 console.log(result);
-
-//---------------     apply()
-
-Function.prototype.myApply = function (context = {}, args = []) {
-  if (typeof this != "function") {
-    throw new Error("not a valid function type");
-  }
-  if (!Array.isArray(args)) {
-    throw new Error("Please provide arument in array");
-  }
-  context.fn = this;
-  const result = context.fn(...args);
-  delete context;
-  return result;
-};
-
-const result2 = sayhello.myApply(obj, [27]);
-console.log(result2, "result2");
-
-//---------------- Bind()
-Function.prototype.myApply = function (context = {}, ...args) {
-  if (typeof this != "function") {
-    throw new Error("not bound to function");
-  }
-  context.fun = this;
-  return function (...newArgs) {
-    const result = context.fun(...args, ...newArgs);
-    delete context;
-    return result;
-  };
-};
-
-const result3 = sayhello.bind(obj,27);
-console.log(result3());
