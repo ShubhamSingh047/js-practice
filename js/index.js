@@ -214,9 +214,169 @@ console.log(minArr.length);
 
 const arr = [1, 2, 3, 4, 5];
 
-// if no value id provided then it take it inital value by defult as first element of arr; 
-const result = arr.reduce((acc, curr, i, arr) => {
-  return acc + curr;
-},10);
+// if no intial value is provided then it take it inital value by defult as first element of arr;
+// const result = arr.reduce((acc, curr, i, arr) => {
+//   return acc + curr;
+// },10);
 
-console.log(result);
+// console.log(result);
+
+// ------- custome map
+// Array.prototype.myMap = function (cb) {
+//   const newArr = [];
+//   if (!Array.isArray(this)) {
+//     throw new Error(`${this} is not a valid array`);
+//   }
+//   for (let i = 0; i < this.length; i++) {
+//     newArr.push(cb(this[i], i, this));
+//   }
+//   return newArr;
+// };
+// let resMap = arr.myMap((data, i, arr) => data + 1);
+// console.log(resMap);
+
+// ------- custome filter
+// Array.prototype.myFilter = function (cb) {
+//   const temp = [];
+//   if (!Array.isArray(this)) {
+//     throw new Error(`${this} is not a valid array`);
+//   }
+//   for (let i = 0; i < this.length; i++) {
+//     if (cb(this[i], i, this)) {
+//       temp.push(this[i]);
+//     }
+//   }
+//   return temp;
+// };
+// const resFilter = arr.myFilter((data) => data > 1);
+// console.log(resFilter);
+
+// ---------- custome Reduce
+// Array.prototype.myReduce = function (cb, intialvalue) {
+//   let temp = intialvalue;
+//   if (!Array.isArray(this)) {
+//     throw new Error(`${this} is not a valid array`);
+//   }
+//   for (let i = 0; i < this.length; i++) {
+//     temp = temp ? cb(temp, this[i], i, arr) : this[i];
+//   }
+//   return temp;
+// };
+// const resReduce = arr.myReduce((acc, curr, i, arr) => {
+//   return acc + curr;
+// }, 20);
+// console.log(resReduce);
+
+//return the name of student who score more then 60 after addition of grace marks 60;
+// let students = [
+//   { name: "Piyush", rollNumber: 31, marks: 80 },
+//   { name: "Jenny", rollNumber: 15, marks: 69 },
+//   { name: "Kaushal", rollNumber: 16, marks: 35 },
+//   { name: "Dilpreet", rollNumber: 7, marks: 55 },
+// ];
+
+// const result = students
+//   .map((stu) => {
+//     if (stu.marks < 60) {
+//       stu.marks += 20;
+//     }
+//     return stu;
+//   })
+//   .filter((stu) => stu.marks > 60)
+//   //here giving intial value as 0 is cpmpusory other wise it will take arr[0] which an object
+//   .reduce((acc, curr) => acc + curr.marks, 0);
+
+// console.log(result, "result");
+
+// -------------------- Functions / Closures ---------------------
+
+(function test() {
+  const test = arguments[0];
+  return function sum() {
+    const test1 = arguments[0];
+    return function sun3() {
+      console.log(test + test1 + arguments[0]);
+    };
+  };
+})(1)(2)(3);
+
+/* 
+write function in torder to satify below contions
+
+const resultSum=SumFunction(6)
+resultSum(10) //16
+resultSum(20) //26
+*/
+
+function SumFunction(sum1) {
+  return function (sum2) {
+    console.log(sum1 + sum2);
+  };
+}
+
+const resultSum = SumFunction(6);
+resultSum(10); //16
+resultSum(20); //26
+
+// Private module
+
+// const Module = (function () {
+//   function globalFunc() {
+//     console.log("Global");
+//   }
+
+//   return {
+//     publicModule: function () {
+//       console.log("Public");
+//     },
+//     privateModule: function () {
+//       console.log("private");
+//     },
+//   };
+// })();
+
+// Module.publicModule();
+// Module.privateModule();
+
+// Creating closures to run code only once
+// let sub = "subscibed";
+// function CallOnce() {
+//   let called = 0;
+//   return function () {
+//     if (called === 0) {
+//       console.log(sub, " ", ++called);
+//     } else {
+//       console.log("already subscriber");
+//     }
+//   };
+// }
+
+// const Subcribe = CallOnce();
+// Subcribe();
+// Subcribe();
+// Subcribe();
+
+/*
+Imporve the performace of given function ??
+
+function find(index) {
+  const a = [];
+  for (let i = 0; i < 1000000; i++) {
+    a[i] = i + 1;
+  }
+  console.log(a[index]);
+}
+}
+*/
+function find(index) {
+  const a = [];
+  for (let i = 0; i < 1000000; i++) {
+    a[i] = i + 1;
+  }
+  return function () {
+    console.log(a[index]);
+  };
+}
+
+const result = find(4000);
+result();
