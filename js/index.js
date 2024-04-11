@@ -19,7 +19,7 @@ const test = users
 console.log(test);
 */
 
-// ------------------ Closures ------------------
+// *------------------ Closures ------------------
 
 /*
 const globalfunc = () => {
@@ -41,17 +41,17 @@ counter.increment();
 console.log(counter.getCount());
 */
 
-// --------------------------- Curring -------------------
+// *--------------------------- Curring -------------------
 // const multiply = (a) => (b) => a * b;
 // console.log(multiply(2)(3));
 
-// ------check if user with such name exist------------
+//* ------check if user with such name exist------------
 /*
 const users = [
   { id: 1, name: "Jack", isActive: true },
   { id: 2, name: "John", isActive: true },
   { id: 3, name: "Mike", isActive: false },
-  // { id: 3, name: "shubham", isActive: false },
+ { id: 3, name: "shubham", isActive: false },
 ];
 
 const userExist = (name, users) => {
@@ -63,7 +63,7 @@ const result = userExist("shubham", users);
 console.log(result);
 */
 
-//-------Remove all the dublicate from array-------
+//*-------Remove all the dublicate from array-------
 /*
 const removDublicate = (arr) => {
   return [...new Set(arr)];
@@ -72,7 +72,7 @@ const arr = [1, 1, 2, 3, 2, 3];
 console.log(removDublicate(arr));
 */
 
-//---------------------- Sorting Array -------------------
+//*---------------------- Sorting Array -------------------
 /*
 const arr = [3, 2, 1, 4];
 const res = arr.slice().sort((a, b) => a - b);
@@ -93,7 +93,7 @@ books.sort((book1, book2) => {
 console.log(books);
 */
 
-//-------- Array range -----------
+//*-------- Array range -----------
 // Q1: Write a function which implements a range
 // console.log(range(1, 50)) // [1,2,3,4,5...,50]
 /*
@@ -108,7 +108,7 @@ const range = (start, end) => {
 console.log(range(1, 50));
 */
 
-//---------shuffle Array----------
+//*---------shuffle Array----------
 // const arr = [1, 2, 3, 4, 5];
 
 // const shuffle = (arr) => {
@@ -129,7 +129,7 @@ const minArr = test.filter((el) => el === min);
 console.log(minArr.length);
 */
 
-//----------Call, Apply, Bind----------
+//*----------Call, Apply, Bind----------
 
 // const obj = {
 //   name: "shubham",
@@ -141,7 +141,7 @@ console.log(minArr.length);
 // let result = sayhello.call(obj, 27);
 // console.log(result);
 
-//Now create Polyfill for call()
+// *Now create Polyfill for call()
 
 // Function.prototype.myCall = function (context = {}, ...arg) {
 //   if (typeof this != "function") {
@@ -156,7 +156,7 @@ console.log(minArr.length);
 // result = sayhello.myCall(obj, 36);
 // console.log(result);
 
-// //---------------     apply()
+// *---------------     apply()
 
 // Function.prototype.myApply = function (context = {}, args = []) {
 //   if (typeof this != "function") {
@@ -174,7 +174,7 @@ console.log(minArr.length);
 // const result2 = sayhello.myApply(obj, [27]);
 // console.log(result2, "result2");
 
-// //---------------- Bind()
+// *---------------- Bind()
 // Function.prototype.myApply = function (context = {}, ...args) {
 //   if (typeof this != "function") {
 //     throw new Error("not bound to function");
@@ -210,9 +210,9 @@ console.log(minArr.length);
 // const a = 1;
 // var b = 2;
 
-// --- filter/map/reduce --
+// * --- filter/map/reduce --
 
-const arr = [1, 2, 3, 4, 5];
+// const arr = [1, 2, 3, 4, 5];
 
 // if no intial value is provided then it take it inital value by defult as first element of arr;
 // const result = arr.reduce((acc, curr, i, arr) => {
@@ -221,7 +221,7 @@ const arr = [1, 2, 3, 4, 5];
 
 // console.log(result);
 
-// ------- custome map
+// * ------- custome map
 // Array.prototype.myMap = function (cb) {
 //   const newArr = [];
 //   if (!Array.isArray(this)) {
@@ -235,7 +235,7 @@ const arr = [1, 2, 3, 4, 5];
 // let resMap = arr.myMap((data, i, arr) => data + 1);
 // console.log(resMap);
 
-// ------- custome filter
+// * ------- custome filter
 // Array.prototype.myFilter = function (cb) {
 //   const temp = [];
 //   if (!Array.isArray(this)) {
@@ -251,7 +251,7 @@ const arr = [1, 2, 3, 4, 5];
 // const resFilter = arr.myFilter((data) => data > 1);
 // console.log(resFilter);
 
-// ---------- custome Reduce
+// * ---------- custome Reduce
 // Array.prototype.myReduce = function (cb, intialvalue) {
 //   let temp = intialvalue;
 //   if (!Array.isArray(this)) {
@@ -290,35 +290,38 @@ const arr = [1, 2, 3, 4, 5];
 
 // -------------------- Functions / Closures ---------------------
 
-(function test() {
-  const test = arguments[0];
-  return function sum() {
-    const test1 = arguments[0];
-    return function sun3() {
-      console.log(test + test1 + arguments[0]);
-    };
-  };
-})(1)(2)(3);
+// (function test() {
+//   const test = arguments[0];
+//   return function sum() {
+//     const test1 = arguments[0];
+//     return function sun3() {
+//       console.log(test + test1 + arguments[0]);
+//     };
+//   };
+// })(1)(2)(3);
 
 /* 
-write function in torder to satify below contions
+* write function in torder to satify below contions
 
 const resultSum=SumFunction(6)
 resultSum(10) //16
 resultSum(20) //26
 */
 
-function SumFunction(sum1) {
-  return function (sum2) {
-    console.log(sum1 + sum2);
-  };
-}
+// function SumFunction(sum1) {
+//   return function (sum2) {
+//     console.log(sum1 + sum2);
+//   };
+// }
 
-const resultSum = SumFunction(6);
-resultSum(10); //16
-resultSum(20); //26
+// const resultSum = SumFunction(6);
+// resultSum(10); //16
+// resultSum(20); //26
+/** 
+ 
+* ? Private module
 
-// Private module
+**/
 
 // const Module = (function () {
 //   function globalFunc() {
@@ -357,7 +360,7 @@ resultSum(20); //26
 // Subcribe();
 
 /*
-Imporve the performace of given function ??
+*Imporve the performace of given function ??
 
 function find(index) {
   const a = [];
@@ -368,15 +371,162 @@ function find(index) {
 }
 }
 */
-function find(index) {
-  const a = [];
-  for (let i = 0; i < 1000000; i++) {
-    a[i] = i + 1;
-  }
-  return function () {
-    console.log(a[index]);
-  };
-}
 
-const result = find(4000);
-result();
+/* 
+
+*how to improve speed of out function which has a very long network call
+
+*/
+
+// function find() {
+//   const a = [];
+//   for (let i = 0; i < 1000000; i++) {
+//     a[i] = i + 1;
+//   }
+//   return function (index) {
+//     console.log(a[index]);
+//   };
+// }
+
+// const result = find();
+// result(4000);
+
+/** 
+ 
+ *! Create a cutome Funcion which will be only called once pollyphill!
+* ? doubt ?
+ **/
+
+// function once(func, context) {
+//   let ran;
+//   return function () {
+//     if (func) {
+//       ran = func.apply(context || this, arguments);
+//       func = null;
+//     }
+//     return ran;
+//   };
+// }
+
+// const hello = once((a, b) => console.log("Hello", a, b));
+
+// hello(1,2);
+
+/**
+ * ?logic questions
+ **/
+
+const items = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" },
+  { id: 3, name: "C" },
+  { id: 1, name: "D" },
+  { id: 3, name: "F" },
+  { id: 1, name: "A" },
+  { id: 3, name: "C" },
+];
+
+// expected result:
+// [
+// { id: 1, names:['a', 'd']},
+// { id: 2, names: ['b']},
+// { id: 3, names:['c', 'f']}
+// ]
+// const result = items.reduce((acc, curr) => {
+//   const existingItem = acc.find((item) => item.id === curr.id);
+//   const name = curr.name.toLowerCase(); // Convert name to lowercase
+
+//   if (existingItem) {
+//     // If item with the same id exists, add name if it's not already in the array
+//     if (!existingItem.names.includes(name)) {
+//       existingItem.names.push(name);
+//     }
+//   } else {
+//     // If item with id doesn't exist, create a new object
+//     acc.push({ id: curr.id, names: [name] });
+//   }
+
+//   return acc;
+// }, []);
+
+// console.log(result);
+
+// function rollCall(...args) {
+//   let count = 0;
+//   return function () {
+//     if (args.length > count) {
+//       console.log(args[count]);
+//       count++;
+//     } else {
+//       console.log("Everyone accounted for");
+//     }
+//   };
+// }
+// const arr = ["shubham", "rahul", "akash"];
+// let result = rollCall(...arr);
+// result();
+// result();
+// result();
+// result();
+
+/**
+ * ! Memoize a function so it performace can be increase;
+ **/
+
+// function Memoize(fun, context) {
+//   const temp = {};
+//   return function (...args) {
+//     let argsCatche = JSON.stringify(args);
+//     if (!temp[argsCatche]) {
+//       temp[argsCatche] = fun.call(context || this, ...args);
+//     }
+//     return temp[argsCatche];
+//   };
+// }
+
+// function TimeTaken(num1, num2) {
+//   for (let i = 1; i < 1000000; i++) {}
+//   return num1 * num2;
+// }
+
+// const optimumRes = Memoize(TimeTaken);
+// console.time("first Call");
+// console.log(optimumRes(10983, 12334));
+// console.timeEnd("first Call");
+
+// console.time("second Call"); // Corrected label
+// console.log(optimumRes(10983, 12334));
+// console.timeEnd("second Call"); // Corrected label
+
+/**
+ * *set timeOut Questions!
+ * ? Guess OutPut !
+ * function a(){
+ * for(var i=0; i<3; i++){
+ * setTimeout(function log(){
+ *  console.log(i);
+ * },i*1000)
+ * }
+ * }
+ * TODO:this will give 3,3,3 times !
+ *
+ *
+ * ? Guess OutPut !
+ * function a(){
+ * for(let i=0; i<3; i++){
+ * setTimeout(function log(){
+ *  console.log(i);
+ * },i*1000)
+ * }
+ * }
+ * TODO:this will give 0,1,2 becuase let create its own block every time !
+ * ? using var how can we achive the 0,1,2 as an answer
+ *
+ * functiona(){
+  * for(var i=0; i<3; i++){
+    * function(i){
+    *  setTimeout(()=>log(i),i*1000);
+    * }
+  * }
+ * }
+ **/
